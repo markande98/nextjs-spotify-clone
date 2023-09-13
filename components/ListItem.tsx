@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay } from "react-icons/fa";
 
 interface ListItemProps {
   name: string;
@@ -12,12 +12,13 @@ interface ListItemProps {
 const ListItem: React.FC<ListItemProps> = ({ name, image, href }) => {
   const router = useRouter();
 
-  const handleClick = () => {
+  const onClick = () => {
     // add authentication before push
     router.push(href);
   };
   return (
     <button
+      onClick={onClick}
       className="
             relative
             group
@@ -35,10 +36,9 @@ const ListItem: React.FC<ListItemProps> = ({ name, image, href }) => {
       <div className="relative min-h-[64px] min-w-[64px]">
         <Image className="object-cover" alt="image" fill src={image} />
       </div>
-      <p className="font-medium truncate py-5">
-        {name}
-      </p>
-      <div className="
+      <p className="font-medium truncate py-5">{name}</p>
+      <div
+        className="
         absolute
         transition
         opacity-0
@@ -52,7 +52,8 @@ const ListItem: React.FC<ListItemProps> = ({ name, image, href }) => {
         right-5
         group-hover:opacity-100
         hover:scale-110
-      ">
+      "
+      >
         <FaPlay className="text-black" />
       </div>
     </button>
